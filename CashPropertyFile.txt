@@ -1,0 +1,23 @@
+#
+#Sat Oct 22 22:04:09 SGT 2016
+Name5=5C
+Name4=50C
+Name3=$1
+Name2=10C
+Name1=20C
+Value5=5
+Value4=50
+NumOfItems=5
+Value3=100
+Value2=10
+Value1=20
+Quantity5=9
+Quantity4=42
+Quantity3=13
+Quantity2=10
+Quantity1=11
+Weight5=7.1
+Weight4=35.0
+Weight3=42.2
+Weight2=10.9
+Weight1=18.5
