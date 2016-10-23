@@ -19,7 +19,7 @@ import java.awt.*;
  */
 public class DrinkDisplayListener implements ActionListener {
 	private MaintenanceController mCtrl;
-
+        private int selectedIdx;
 	/**
 	 * This constructor creates an instance of the DrinkDisplayListener object.
 	 * @param mctrl the MaintenanceController
@@ -34,12 +34,15 @@ public class DrinkDisplayListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Button btn;
 		String cmd;
-		int idx;
 
 		btn = (Button) e.getSource();
 		cmd = btn.getActionCommand();
-		idx = Integer.parseInt(cmd);
+		selectedIdx = Integer.parseInt(cmd);
 
-		mCtrl.displayDrinks(idx);
+		mCtrl.displayDrinks(selectedIdx);
 	}
+        
+        public int getSelectedInx(){
+            return selectedIdx;
+        }
 }//End of class DrinkDisplayListener

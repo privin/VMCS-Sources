@@ -27,16 +27,20 @@ public class MainController {
 	private MaintenanceController maintenanceCtrl;
 	private TransactionController txCtrl;
 	private StoreController       storeCtrl;
-
-	private String      propertyFile;
+        private static MainController mCtrl = null;
+	private static String propertyFile_;
 
 	/**
 	 * This constructor creates an instance of MainController object.
 	 * @param propertyFile the property file name.
 	 */
-	public MainController(String propertyFile) {
-		this.propertyFile = propertyFile;
+	protected MainController() {
+	
 	}
+        
+        public static void setPropertiesFile(String propertyFile){
+            propertyFile_ = propertyFile;
+        }
 
 	/**
 	 * This method will initiate the creation of all the control objects necessary for
@@ -60,20 +64,22 @@ public class MainController {
 	 */
 	public void initialize() throws VMCSException {
 		try {
-			Environment.initialize(propertyFile);
+			Environment.initialize(propertyFile_);
 			CashPropertyLoader cashLoader =
 				new CashPropertyLoader(Environment.getCashPropFile());
 			DrinkPropertyLoader drinksLoader =
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
-			storeCtrl.initialize();
-			simulatorCtrl = new SimulationController(this);
-			machineryCtrl = new MachineryController(this);
+                        storeCtrl = new StoreController(cashLoader, drinksLoader);
+                        machineryCtrl = new MachineryController(mCtrl);
+                        simulatorCtrl = new SimulationController(mCtrl);
+                        System.out.println("Setting machinery conrtrjksrbf");
+
+			maintenanceCtrl = new MaintenanceController(mCtrl);
 			machineryCtrl.initialize();
-			maintenanceCtrl = new MaintenanceController(this);
-			txCtrl=new TransactionController(this);
+			storeCtrl.initialize();
+			txCtrl=new TransactionController(mCtrl);
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
@@ -128,6 +134,15 @@ public class MainController {
 	public TransactionController getTransactionController() {
 		return txCtrl;
 	}
+        
+       public static MainController getMainController(){
+	 if(mCtrl==null){
+             mCtrl = new MainController();     
+             return mCtrl;
+         }else{
+             return mCtrl;
+         }
+	}
 
 	/**
 	 * This method destroys all the object instances created for opening the vending
@@ -137,11 +152,7 @@ public class MainController {
 	 * created for simulating the vending machine&#46;
 	 */
 	public void closeDown() {
-		try {
-			storeCtrl.closeDown();
-		} catch (Exception e) {
-			System.out.println("Error closing down the stores: " + e);
-		}
+		
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();

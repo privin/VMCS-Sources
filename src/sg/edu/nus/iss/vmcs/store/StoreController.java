@@ -8,6 +8,10 @@
 package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import sg.edu.nus.iss.vmcs.denomination.Cents100Dispenser;
 import sg.edu.nus.iss.vmcs.denomination.Cents10Dispenser;
@@ -33,7 +37,7 @@ import sg.edu.nus.iss.vmcs.denomination.DispenseChain;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreController {
+public class StoreController implements Observer{
 	private CashStore cStore;
 	private DrinksStore dStore;
 
@@ -136,7 +140,7 @@ public class StoreController {
 		    	break;
 		    }
 	}
-			c1.setNextChain(c2);
+                    c1.setNextChain(c2);
 		    c2.setNextChain(c3);
 		    c3.setNextChain(c4);
 		    c4.setNextChain(c5);
@@ -279,11 +283,10 @@ public class StoreController {
 	 * This involves saving the attributes of the stores to the property file.
 	 * @throws IOException if fail to save cash properties and drinks properties.
 	 */
-	public void closeDown() throws IOException {
-		// save back cash property;
-		saveCashProperties();
-        saveDrinksProperties();
-	}
+//	public void closeDown() throws IOException {
+//		// save back cash property;
+//
+//	}
 
 	/**
 	 * This method saves the attributes of the {@link CashStore} to the input file.
@@ -349,4 +352,16 @@ public class StoreController {
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
 	}
+
+    @Override
+    public void update(Observable o, Object arg) {
+        try {
+            saveCashProperties();
+            saveDrinksProperties();
+        } catch (IOException ex) {
+            Logger.getLogger(StoreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+
 }//End of class StoreController

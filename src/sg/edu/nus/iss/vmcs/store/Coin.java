@@ -7,8 +7,6 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
-import java.util.HashMap;
-
 /**
  * This object stores the weight and value of each type of Coin, and hence enables the 
  * machine to recognize each Coin entered.
@@ -29,7 +27,6 @@ import java.util.HashMap;
 public class Coin extends StoreObject {
     private int value;
     private double weight;
-    private static HashMap<Integer, Double> coinsTable= new HashMap();
 
     /**
      * This constructor creates an instance of the Coin object.
@@ -78,4 +75,5 @@ public class Coin extends StoreObject {
     public int getValue () {
         return (value);
     }
+
   }//End of class Coin
