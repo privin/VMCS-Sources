@@ -16,6 +16,8 @@ package sg.edu.nus.iss.vmcs.customer;
  */
 
 import java.awt.Frame;
+import java.util.Observable;
+import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
@@ -29,7 +31,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class TransactionController {
+public class TransactionController{
 	
 	/*private static TransactionController txrl;
 	
@@ -80,7 +82,7 @@ public class TransactionController {
 		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
 	    custPanel = new CustomerPanel((Frame) scp, this);
 		custPanel.display();
-		dispenseCtrl.updateDrinkPanel();
+//		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);
 		changeGiver.displayChangeStatus();
 		coinReceiver.setActive(false);
@@ -164,7 +166,7 @@ public class TransactionController {
 		coinReceiver.storeCash();
 		dispenseCtrl.allowSelection(true);
 		
-		refreshMachineryDisplay();
+//		refreshMachineryDisplay();
 		System.out.println("CompleteTransaction: End");
 	}
 	
@@ -178,7 +180,7 @@ public class TransactionController {
 		System.out.println("TerminateFault: Begin");
 		dispenseCtrl.allowSelection(false);
 		coinReceiver.refundCash();
-		refreshMachineryDisplay();
+//		refreshMachineryDisplay();
 		System.out.println("TerminateFault: End");
 	}
 	
@@ -202,7 +204,7 @@ public class TransactionController {
 		if(custPanel!=null){
 			custPanel.setTerminateButtonActive(false);
 		}
-		refreshMachineryDisplay();
+//		refreshMachineryDisplay();
 		System.out.println("TerminateTransaction: End");
 	}
 	
@@ -214,7 +216,7 @@ public class TransactionController {
 		coinReceiver.stopReceive();
 		coinReceiver.refundCash();
 		dispenseCtrl.allowSelection(true);
-		refreshMachineryDisplay();
+//		refreshMachineryDisplay();
 		System.out.println("CancelTransaction: End");
 	}
 	
@@ -227,7 +229,7 @@ public class TransactionController {
 			mainCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER,true);
 		}
 		*/
-		dispenseCtrl.updateDrinkPanel();
+//		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);
 		changeGiver.displayChangeStatus();
 		custPanel.setTerminateButtonActive(true);
@@ -341,10 +343,10 @@ public class TransactionController {
 	/**
 	 * This method refreshes the MachinerySimulatorPanel.
 	 */
-	public void refreshMachineryDisplay(){
-		mainCtrl.getMachineryController().refreshMachineryDisplay();
-		
-	}
+//	public void refreshMachineryDisplay(){
+//		mainCtrl.getMachineryController().refreshMachineryDisplay();
+//		
+//	}
 	
 	/**
 	 * This method will nullify reference to customer panel.
@@ -352,4 +354,6 @@ public class TransactionController {
 	public void nullifyCustomerPanel(){
 		custPanel=null;
 	}
-}//End of class TransactionController
+
+    
+  }//End of class TransactionController

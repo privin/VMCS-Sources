@@ -69,7 +69,7 @@ public class StoreViewer extends Panel {
                         new StoreViewerListener(type, i, storeCtrl));
 			this.add(viewItems[i]);
 		}
-		
+		      System.out.println("Store Viewer getting called");
 		update();
 	}
 
@@ -78,7 +78,8 @@ public class StoreViewer extends Panel {
 	 */
 	public void update () {
 		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-		for (int i = 0; i < storeItem.length; i++) {
+                   System.out.println("object.getName() >>" +storeItem[0].getContent().getName());
+              		for (int i = 0; i < storeItem.length; i++) {
 			int val = storeItem[i].getQuantity();
 			String sval = String.valueOf(val);
 			viewItems[i].setValue(sval);

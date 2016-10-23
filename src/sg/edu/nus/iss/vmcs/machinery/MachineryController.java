@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.machinery;
 
+import java.util.Observable;
+import java.util.Observer;
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
 import sg.edu.nus.iss.vmcs.store.*;
@@ -17,7 +19,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MachineryController {
+public class MachineryController implements Observer{
 	/**This attribute reference to the MainController*/
 	public MainController mainCtrl;
 	/**This attribute reference to the StoreController*/
@@ -164,8 +166,6 @@ public class MachineryController {
 	 */
 	public void storeCoin(Coin c) throws VMCSException {
 		storeCtrl.storeCoin(c);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
 	}
 
 	/**
@@ -177,9 +177,6 @@ public class MachineryController {
 	 */
 	public void dispenseDrink(int idx) throws VMCSException {
 		storeCtrl.dispenseDrink(idx);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
-
 	}
 
 	/**
@@ -192,16 +189,20 @@ public class MachineryController {
 	 */
 	public void giveChange(CashStoreItem item, int numOfCoins) throws VMCSException {
 		storeCtrl.giveChange(item, numOfCoins);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
 	}
 	
 	/**
 	 * This method refresh the MachinerySimulatorPanel.
 	 */
-	public void refreshMachineryDisplay(){
-		if(ml!=null){
-			ml.refresh();
-		}
-	}
+//	public void refreshMachineryDisplay(){
+//		if(ml!=null){
+//			ml.refresh();
+//		}
+//	}
+
+    @Override
+    public void update(Observable o, Object arg) {
+        	if (ml != null)
+			ml.getCashStoreDisplay().update();
+    }
 }//End of class MachineryController

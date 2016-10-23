@@ -36,20 +36,21 @@ public class DispenseController {
      * This method updates the whole Drink Selection Box with current names, stocks and prices.
      */
 	public void updateDrinkPanel(){
-		CustomerPanel custPanel=txCtrl.getCustomerPanel();
-		if(custPanel==null){
-			return;
-		}
-		updateDrinkSelection(-1);
-		int storeSize=txCtrl.getMainController().getStoreController().getStoreSize(Store.DRINK);
-		for(int i=0;i<storeSize;i++){
-			StoreItem storeItem=txCtrl.getMainController().getStoreController().getStoreItem(Store.DRINK,i);
-			int quantity=storeItem.getQuantity();
-			DrinksBrand drinksBrand=(DrinksBrand)storeItem.getContent();
-			String name=drinksBrand.getName();
-			int price=drinksBrand.getPrice();
-			custPanel.getDrinkSelectionBox().update(i, quantity, price, name);
-		}
+//		CustomerPanel custPanel=txCtrl.getCustomerPanel();
+//		if(custPanel==null){
+//			return;
+//		}
+//		updateDrinkSelection(-1);
+//		int storeSize=txCtrl.getMainController().getStoreController().getStoreSize(Store.DRINK);
+//                System.out.println("storeSizestoreSizestoreSizestoreSize?>>" +storeSize);
+//		for(int i=0;i<storeSize;i++){
+//			StoreItem storeItem=txCtrl.getMainController().getStoreController().getStoreItem(Store.DRINK,i);
+//			int quantity=storeItem.getQuantity();
+//			DrinksBrand drinksBrand=(DrinksBrand)storeItem.getContent();
+//			String name=drinksBrand.getName();
+//			int price=drinksBrand.getPrice();
+//			custPanel.getDrinkSelectionBox().update(i, quantity, price, name);
+//		}
 	}
 	
 	/**
