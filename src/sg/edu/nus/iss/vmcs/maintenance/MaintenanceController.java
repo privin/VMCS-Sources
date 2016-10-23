@@ -8,6 +8,8 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.Frame;
+import java.util.Observable;
+import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
@@ -27,7 +29,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MaintenanceController {
+public class MaintenanceController{
 	private MainController mCtrl;
 	private MaintenancePanel mpanel;
 	private AccessManager am;
@@ -249,4 +251,5 @@ public class MaintenanceController {
 		if (mpanel != null)
 			mpanel.closeDown();
 	}
+
 }//End of class MaintenanceController

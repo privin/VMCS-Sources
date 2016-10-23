@@ -67,6 +67,8 @@ public class CashPropertyLoader extends FilePropertyLoader {
 	 * @param cashItem the cash store item.
 	 */
 	public void setItem(int index, StoreItem cashItem) {
+            
+            System.out.println("Calling set Item>>>>>>");
 		int idx = index + 1;
 
 		CashStoreItem item = (CashStoreItem) cashItem;

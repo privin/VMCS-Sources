@@ -65,23 +65,20 @@ public class MainController {
 	public void initialize() throws VMCSException {
 		try {
 			Environment.initialize(propertyFile_);
-                         System.out.println("Setting machinery conrtrjksrbf");
-			machineryCtrl = new MachineryController(mCtrl);
 			CashPropertyLoader cashLoader =
 				new CashPropertyLoader(Environment.getCashPropFile());
 			DrinkPropertyLoader drinksLoader =
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-                    
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
-			storeCtrl.initialize();
-                            System.out.println("Store Controller object?>>>" +storeCtrl);
-			simulatorCtrl = new SimulationController(mCtrl);
-//                        System.out.println("Setting machinery conrtrjksrbf");
-//			machineryCtrl = new MachineryController(mCtrl);
-			machineryCtrl.initialize();
+                        storeCtrl = new StoreController(cashLoader, drinksLoader);
+                        machineryCtrl = new MachineryController(mCtrl);
+                        simulatorCtrl = new SimulationController(mCtrl);
+                        System.out.println("Setting machinery conrtrjksrbf");
+
 			maintenanceCtrl = new MaintenanceController(mCtrl);
+			machineryCtrl.initialize();
+			storeCtrl.initialize();
 			txCtrl=new TransactionController(mCtrl);
 		} catch (IOException e) {
 			throw new VMCSException(
@@ -155,11 +152,7 @@ public class MainController {
 	 * created for simulating the vending machine&#46;
 	 */
 	public void closeDown() {
-		try {
-			storeCtrl.closeDown();
-		} catch (Exception e) {
-			System.out.println("Error closing down the stores: " + e);
-		}
+		
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
