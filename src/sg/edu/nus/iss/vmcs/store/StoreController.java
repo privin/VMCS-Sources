@@ -149,7 +149,8 @@ public class StoreController {
 	 * @param c the Coin to be stored.
 	 */
 	public void storeCoin(Coin c) {
-		int idx = cStore.findCashStoreIndex(c);
+		CashStoreIterator id = cStore.CreateIterator();
+                        int idx=id.findCashStoreIndex(c);
 		CashStoreItem item;
 		item = (CashStoreItem) this.getStoreItem(Store.CASH, idx);
 		item.increment();
@@ -236,7 +237,7 @@ public class StoreController {
 		int i;
 		int size;
 
-		size = cStore.getStoreSize();
+		size = cStore.getStoreSize(); 
 		CashStoreItem item;
 		int qty;
 		int val;
