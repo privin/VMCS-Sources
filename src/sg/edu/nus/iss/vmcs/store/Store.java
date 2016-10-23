@@ -49,6 +49,9 @@ public abstract class Store {
 		items = new StoreItem[size];
 	}
 
+        
+	public abstract StoreIterator CreateIterator() ;
+
 	/**
 	 * This method sets the size of the items array in the Store.
 	 * @param sz the store size.

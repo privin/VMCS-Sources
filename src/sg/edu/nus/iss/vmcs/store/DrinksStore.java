@@ -31,4 +31,9 @@ public class DrinksStore extends Store {
 	 */
 	public DrinksStore() {
 	}
+
+    @Override
+    public StoreIterator CreateIterator() {
+       return new DrinkStoreIterator(this);
+    }
 }//End of class DrinksStore
