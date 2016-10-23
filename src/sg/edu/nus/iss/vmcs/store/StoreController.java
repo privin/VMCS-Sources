@@ -8,17 +8,12 @@
 package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import sg.edu.nus.iss.vmcs.denomination.Cents100Dispenser;
-import sg.edu.nus.iss.vmcs.denomination.Cents10Dispenser;
-import sg.edu.nus.iss.vmcs.denomination.Cents20Dispenser;
-import sg.edu.nus.iss.vmcs.denomination.Cents50Dispenser;
-import sg.edu.nus.iss.vmcs.denomination.Cents5Dispenser;
-import sg.edu.nus.iss.vmcs.denomination.DispenseChain;
 
 /**
  * This control object manages changes in CashStore attributes and 
@@ -38,11 +33,7 @@ import sg.edu.nus.iss.vmcs.denomination.DispenseChain;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class StoreController implements Observer{
-	private CashStore cStore;
-	private DrinksStore dStore;
-
-	private PropertyLoader cashLoader;
-	private PropertyLoader drinksLoader;
+	private Map<Integer, Store> stores;
 
 	/**
 	 * This constructor creates an instance of StoreController object.
@@ -52,8 +43,9 @@ public class StoreController implements Observer{
 	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
-		this.cashLoader = cashLoader;
-		this.drinksLoader = drinksLoader;
+		stores = new HashMap<>();
+		stores.put(Store.CASH, new CashStore(cashLoader));
+		stores.put(Store.DRINK, new DrinksStore(drinksLoader));
 	}
 
 	/**
@@ -61,8 +53,6 @@ public class StoreController implements Observer{
 	 * @throws IOException if fail to initialize stores; reading properties.
 	 */
 	public void initialize() throws IOException {
-		cStore = new CashStore();
-		dStore = new DrinksStore();
 		initializeStores();
 	}
 
@@ -72,79 +62,9 @@ public class StoreController implements Observer{
 	 * @throws IOException if fail to initialize stores; reading properties.
 	 */
 	private void initializeStores() throws IOException {
-		initializeCashStore();
-		initializeDrinkStore();
-	}
-
-	/**
-	 * This method initialize the {@link DrinksStore}.
-	 * @throws IOException if fail to initialize drinks store; reading properties.
-	 */
-	private void initializeDrinkStore() throws IOException {
-
-		// get the drink file from the environment property file;
-		int numOfItems = drinksLoader.getNumOfItems();
-		dStore.setStoreSize(numOfItems);
-
-		for (int i = 0; i < numOfItems; i++) {
-            DrinksStoreItem item = (DrinksStoreItem) drinksLoader.getItem(i);
-			StoreObject brand = item.getContent();
-			StoreObject existingBrand = dStore.findObject(brand.getName());
-			if (existingBrand != null) {
-			    item.setContent(existingBrand);
-			}
-			dStore.addItem(i, item);
+		for (Map.Entry<Integer, Store> entry : stores.entrySet()) {
+			entry.getValue().initStore();
 		}
-	}
-
-	/**
-	 * This method initialize the {@link CashStore}.
-	 * @throws IOException if fail to initialize cash store; reading properties.
-	 */
-	private void initializeCashStore() throws IOException {
-		System.out.println("loading cash file:"+cashLoader);
-		// get the cash file from the environment property file;
-		int numOfItems = cashLoader.getNumOfItems();
-		cStore.setStoreSize(numOfItems);
-		DispenseChain c1=null,c2=null,c3=null,c4=null,c5=null;
-		
-		for (int i = 0; i < numOfItems; i++) {
-			
-		    CashStoreItem item = (CashStoreItem) cashLoader.getItem(i);
-		    cStore.addItem(i, item);
-		    Coin coin=(Coin)item.getContent();
-		      switch(coin.getValue()){
-		    
-		    case(CashStore.DEMONINATION_100):
-		    c1=new Cents100Dispenser(item);
-		    break;
-		    	
-		    case(CashStore.DEMONINATION_50):
-		    	
-		    c2=new Cents50Dispenser(item);
-		    break;
-		    case(CashStore.DEMONINATION_20):
-		    	
-		    c3=new Cents20Dispenser(item);
-		    break;
-		    case(CashStore.DEMONINATION_10):
-		    	
-		    c4=new Cents10Dispenser(item);
-		    break;
-		    case(CashStore.DEMONINATION_5):
-		    	
-		    c5=new Cents5Dispenser(item);
-		    break;
-		    
-		    default:
-		    	break;
-		    }
-	}
-                    c1.setNextChain(c2);
-		    c2.setNextChain(c3);
-		    c3.setNextChain(c4);
-		    c4.setNextChain(c5);
-		  
 	}
 
 	/**
@@ -153,7 +73,7 @@ public class StoreController implements Observer{
 	 * @param c the Coin to be stored.
 	 */
 	public void storeCoin(Coin c) {
-		CashStoreIterator id = cStore.CreateIterator();
+		CashStoreIterator id = ((CashStore)getStore(Store.CASH)).CreateIterator();
                         int idx=id.findCashStoreIndex(c);
 		CashStoreItem item;
 		item = (CashStoreItem) this.getStoreItem(Store.CASH, idx);
@@ -166,10 +86,7 @@ public class StoreController implements Observer{
 	 * @return the size of the store of the given type of Store.
 	 */
 	public int getStoreSize(int type) {
-		if (type == Store.CASH)
-			return cStore.getStoreSize();
-		else
-			return dStore.getStoreSize();
+		return getStore(type).getStoreSize();
 	}
 
 	/**
@@ -178,10 +95,7 @@ public class StoreController implements Observer{
 	 * @return an array of StoreItem.
 	 */
 	public StoreItem[] getStoreItems(int type) {
-		if (type == Store.CASH)
-			return cStore.getItems();
-		else
-			return dStore.getItems();
+		return getStore(type).getItems();		
 	}
 
 	/**
@@ -198,10 +112,7 @@ public class StoreController implements Observer{
 	 */
 	public void changeStoreQty(int type, int idx, int qty) {
 			System.out.println("StoreController.changeStoreQty: type:"+ type+ " qty:"+ qty);
-			if (type == Store.CASH)
-				cStore.setQuantity(idx, qty);
-			else
-				dStore.setQuantity(idx, qty);
+			getStore(type).setQuantity(idx, qty);			
 	}
 
 	/**
@@ -211,10 +122,7 @@ public class StoreController implements Observer{
 	 * @return the StoreItem.
 	 */
 	public StoreItem getStoreItem(int type, int idx) {
-		if (type == Store.CASH)
-			return cStore.getStoreItem(idx);
-		else
-			return dStore.getStoreItem(idx);
+		return getStore(type).getStoreItem(idx);		
 	}
 
 	/**
@@ -225,7 +133,7 @@ public class StoreController implements Observer{
 	public void setPrice(int idx, int pr)  {
 		DrinksStoreItem item;
 
-		item = (DrinksStoreItem) dStore.getStoreItem(idx);
+		item = (DrinksStoreItem) getStore(Store.DRINK).getStoreItem(idx);
 		DrinksBrand bd;
 
 		bd = (DrinksBrand) item.getContent();
@@ -241,7 +149,7 @@ public class StoreController implements Observer{
 		int i;
 		int size;
 
-		size = cStore.getStoreSize(); 
+		size = getStore(Store.CASH).getStoreSize(); 
 		CashStoreItem item;
 		int qty;
 		int val;
@@ -249,7 +157,7 @@ public class StoreController implements Observer{
 		Coin c;
 
 		for (i = 0; i < size; i++) {
-			item = (CashStoreItem) cStore.getStoreItem(i);
+			item = (CashStoreItem) getStore(Store.CASH).getStoreItem(i);
 			qty = item.getQuantity();
 			c = (Coin) item.getContent();
 			val = c.getValue();
@@ -266,11 +174,11 @@ public class StoreController implements Observer{
 	public int transferAll()  {
 		int i;
 		int cc = 0; // coin quauntity;
-		int size = cStore.getStoreSize();
+		int size = getStore(Store.CASH).getStoreSize();
 
 		CashStoreItem item;
 		for (i = 0; i < size; i++) {
-			item = (CashStoreItem) cStore.getStoreItem(i);
+			item = (CashStoreItem) getStore(Store.CASH).getStoreItem(i);
 			cc = cc + item.getQuantity();
 			item.setQuantity(0);
 		}
@@ -287,33 +195,6 @@ public class StoreController implements Observer{
 //		// save back cash property;
 //
 //	}
-
-	/**
-	 * This method saves the attributes of the {@link CashStore} to the input file.
-	 * @throws IOException if fail to save cash properties.
-	 */
-	private void saveCashProperties() throws IOException {
-		int size = cStore.getStoreSize();
-		cashLoader.setNumOfItems(size);
-		for (int i = 0; i < size; i++) {
-			cashLoader.setItem(i, cStore.getStoreItem(i));
-		}
-		cashLoader.saveProperty();
-	}
-
-	/**
-	 * This method saves the attributes of the {@link DrinksStore} to the input file.
-	 * It saves the drink property when simulation is ended.
-	 * @throws IOException if fail to save drinks properties.
-	 */
-	private void saveDrinksProperties() throws IOException {
-		int size = dStore.getStoreSize();
-		drinksLoader.setNumOfItems(size);
-		for (int i = 0; i < size; i++) {
-			drinksLoader.setItem(i, dStore.getStoreItem(i));
-		}
-		drinksLoader.saveProperty();
-	}
 
 	/**
 	 * This method instructs the {@link DrinksStore} to dispense one drink, and then updates the 
@@ -333,10 +214,7 @@ public class StoreController implements Observer{
 	 * @return the Store of the specified type&#46;
 	 */
 	public Store getStore(int type) {
-		if (type == Store.CASH)
-			return (Store) cStore;
-		else
-			return (Store) dStore;
+		return stores.get(type);
 	}
 
 	/**
@@ -355,9 +233,10 @@ public class StoreController implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        try {
-            saveCashProperties();
-            saveDrinksProperties();
+        try {        	
+            for (Map.Entry<Integer, Store> entry : stores.entrySet()) {
+            	entry.getValue().saveProps();
+            }
         } catch (IOException ex) {
             Logger.getLogger(StoreController.class.getName()).log(Level.SEVERE, null, ex);
         }
