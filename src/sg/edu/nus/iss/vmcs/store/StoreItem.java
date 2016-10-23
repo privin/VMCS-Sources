@@ -7,7 +7,10 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
+import java.util.HashMap;
 import java.util.Observable;
+import sg.edu.nus.iss.vmcs.machinery.MachineryController;
+import sg.edu.nus.iss.vmcs.system.MainController;
 
 /**
  * This entity object implements a generic storage item class&#46; It performs actions like;
@@ -29,16 +32,20 @@ import java.util.Observable;
  */
 public class StoreItem extends Observable{
 	private StoreObject content;
-	private int quantity;
+	private int quantity; 
 
 	/**
 	 * This constructor creates an instance of StoreItem.
 	 * @param content the content of the StoreItem.
 	 * @param quantity the quantity of the content.
+         * 
 	 */
+        
 	public StoreItem(StoreObject content, int quantity) {
 		this.content = content;
 		this.quantity = quantity;
+                System.out.println("sdfsfsd" +MainController.getMainController().getMachineryController());
+                this.addObserver(MainController.getMainController().getMachineryController());
 	}
 
 	/**
@@ -106,5 +113,6 @@ public class StoreItem extends Observable{
                 setChanged();
                 notifyObservers(quantity);
 	}
-       
+        
+        
 }//End of class StoreItem

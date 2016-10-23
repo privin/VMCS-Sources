@@ -26,6 +26,7 @@ package sg.edu.nus.iss.vmcs.store;
 
 public class StoreObject {
 	String name;
+        
 
 	/**
 	 * This constructor creates an instance of StoreObject object.
@@ -56,4 +57,6 @@ public class StoreObject {
 	public void setName(String n) {
 		name = n;
 	}
+        
+
 }//End of class StoreObject

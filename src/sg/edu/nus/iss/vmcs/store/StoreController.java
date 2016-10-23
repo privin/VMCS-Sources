@@ -348,4 +348,6 @@ public class StoreController {
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
 	}
+        
+
 }//End of class StoreController

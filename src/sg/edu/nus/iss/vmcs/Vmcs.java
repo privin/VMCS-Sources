@@ -32,7 +32,8 @@ public class Vmcs {
 	 * This method start the MainController.
 	 */
 	public void start() {
-		MainController mc = new MainController(propertiesFile);
+		MainController mc = MainController.getMainController();
+                MainController.setPropertiesFile(propertiesFile);
 		try {
 			mc.start();
 		} catch (VMCSException e) {

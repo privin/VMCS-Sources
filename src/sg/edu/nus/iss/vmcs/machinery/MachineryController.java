@@ -35,6 +35,7 @@ public class MachineryController implements Observer{
 	public MachineryController(MainController mctrl) {
 		mainCtrl = mctrl;
 		storeCtrl = mctrl.getStoreController();
+         
 	}
 
 	/**
@@ -176,7 +177,9 @@ public class MachineryController implements Observer{
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void dispenseDrink(int idx) throws VMCSException {
+            System.out.println("sdfzsdfzsdfszdfsdzfsdf" +storeCtrl);
 		storeCtrl.dispenseDrink(idx);
+                
 	}
 
 	/**
@@ -202,6 +205,7 @@ public class MachineryController implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+              System.out.println("heree>>>>>>>>>>>>>>>>>>>>>>>>");
         	if (ml != null)
 			ml.getCashStoreDisplay().update();
     }
