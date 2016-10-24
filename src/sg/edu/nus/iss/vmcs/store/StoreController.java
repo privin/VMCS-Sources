@@ -191,10 +191,12 @@ public class StoreController implements Observer{
 	 * This involves saving the attributes of the stores to the property file.
 	 * @throws IOException if fail to save cash properties and drinks properties.
 	 */
-//	public void closeDown() throws IOException {
-//		// save back cash property;
-//
-//	}
+	public void closeDown() throws IOException {
+		// save back cash property;
+		for (Map.Entry<Integer, Store> entry : stores.entrySet()) {
+        	entry.getValue().saveProps();
+        }
+	}
 
 	/**
 	 * This method instructs the {@link DrinksStore} to dispense one drink, and then updates the 
