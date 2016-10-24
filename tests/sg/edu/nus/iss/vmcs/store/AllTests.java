@@ -14,15 +14,15 @@ import junit.framework.TestSuite;
 public class AllTests {
 	public static TestSuite suite() throws Exception {
 		  TestSuite suite=new TestSuite("Store Tests");		  
-//		  suite.addTestSuite(CashStoreItemTest.class);
-//		  suite.addTestSuite(CashStoreTest.class);
-//		  suite.addTestSuite(CoinTest.class);
-//		  suite.addTestSuite(DrinksBrandTest.class);
-//		  suite.addTestSuite(DrinksStoreItemTest.class);
-//		  suite.addTestSuite(DrinksStoreTest.class);
-//		  suite.addTestSuite(StoreControllerTest.class);
-//		  suite.addTestSuite(StoreItemTest.class);
-//		  suite.addTestSuite(StoreObjectTest.class);
+		  suite.addTestSuite(CashStoreItemTest.class);
+		  suite.addTestSuite(CashStoreTest.class);
+		  suite.addTestSuite(CoinTest.class);
+		  suite.addTestSuite(DrinksBrandTest.class);
+		  suite.addTestSuite(DrinksStoreItemTest.class);
+		  suite.addTestSuite(DrinksStoreTest.class);
+		  suite.addTestSuite(StoreControllerTest.class);
+		  suite.addTestSuite(StoreItemTest.class);
+		  suite.addTestSuite(StoreObjectTest.class);
 		  return suite;
 	}
 }//End of class AllTests
