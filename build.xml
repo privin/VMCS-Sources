@@ -17,6 +17,7 @@
     <javac srcdir="tests" destdir="classes" deprecation="on">
       <classpath>
         <pathelement location="classes"/>
+      	<pathelement location="./jars/junit.jar"/>
       </classpath>
     </javac>
   </target>
@@ -29,7 +30,7 @@
       <formatter type="plain"/>
       <test name="sg.edu.nus.iss.vmcs.store.AllTests"/>
       <classpath>
-        <pathelement location="classes"/>
+        <pathelement location="classes"/>      	
       </classpath>
     </junit>
   </target>
