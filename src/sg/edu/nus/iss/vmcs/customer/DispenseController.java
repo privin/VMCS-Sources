@@ -68,7 +68,7 @@ public class DispenseController {
 	 */
 	public void allowSelection(boolean allow){
 		MainController mainCtrl=txCtrl.getMainController();
-		CustomerPanel custPanel=txCtrl.getCustomerPanel();
+		MyCustomerPanel custPanel=txCtrl.getCustomerPanel();
 		if(custPanel==null){
 			return;
 		}

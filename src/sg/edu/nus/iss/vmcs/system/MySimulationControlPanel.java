@@ -9,6 +9,11 @@ package sg.edu.nus.iss.vmcs.system;
  *
  * @author Srishti Miglani
  */
-public interface MySimulationControlPanel {
-      public SimulatorControlPanel createSimulatorControlPanel(SimulationController controller); 
+public interface MySimulationControlPanel  extends GUIPanel{
+//      public void createSimulatorControlPanel(); 
+      public void display();
+      public void setSimulationActive (boolean isOn);
+      public void setButtonState (int id, boolean state);
+      public void closeDown ();
+      public void setActive (int id, boolean state); 
 }

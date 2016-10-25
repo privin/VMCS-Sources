@@ -20,6 +20,7 @@ import java.awt.Panel;
 import java.awt.Toolkit;
 
 import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
@@ -45,7 +46,7 @@ import sg.edu.nus.iss.vmcs.util.WarningDisplay;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class MaintenancePanel extends Dialog {
+public class MaintenancePanel extends Dialog implements MyMaintenancePanel{
 	private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
 	private int frameX=0;
 	private int frameY=0;
@@ -80,14 +81,8 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public MaintenancePanel(Frame fr, MaintenanceController mc) {
 		super(fr, TITLE, false);
-	}
-        
-        public MaintenancePanel createMaintenancePanel(Frame fr, MaintenanceController mc){
-            
-                MaintenancePanel maintenanceP = new MaintenancePanel(fr, mc);
-		mctrl = mc;
-
-		// north part
+                mctrl = mc;
+                // north part
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		Panel tp1 = new Panel();
@@ -97,7 +92,7 @@ public class MaintenancePanel extends Dialog {
 		tpn.setLayout(new GridLayout(0, 1));
 
 		password = new LabelledDisplay("Password:", 30, LabelledDisplay.FLOW);
-		PasswordListener pl = new PasswordListener(mc.getAccessManager());
+		PasswordListener pl = new PasswordListener(mctrl.getAccessManager());
 		password.addListener(pl);
 
 		Panel tp3 = new Panel();
@@ -159,7 +154,6 @@ public class MaintenancePanel extends Dialog {
         frameX=(screenWidth-frameWidth);
         frameY=0;
         setBounds(frameX,frameY,frameWidth, frameHeight);
-        return maintenanceP;
         }
 
 	/**

@@ -1,5 +1,5 @@
 #
-#Sun Oct 23 20:44:20 SGT 2016
+#Tue Oct 25 16:43:08 SGT 2016
 Name6=Soya Bean
 Name5=Coca-Cola
 Name4=Soya Bean
@@ -7,9 +7,9 @@ Name3=Sarsi
 Name2=Fanta
 Name1=Coca-Cola
 NumOfItems=6
-Quantity6=10
-Quantity5=16
-Quantity4=5
+Quantity6=8
+Quantity5=11
+Quantity4=4
 Quantity3=0
 Quantity2=0
 Quantity1=0

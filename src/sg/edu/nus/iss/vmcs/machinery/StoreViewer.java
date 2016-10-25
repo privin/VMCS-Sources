@@ -13,104 +13,113 @@ import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
 /**
- * This boundary object displays the contents of a store (DrinksStore or CashStore) and
- * allows them to be changed.
+ * This boundary object displays the contents of a store (DrinksStore or
+ * CashStore) and allows them to be changed.
  *
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreViewer extends Panel {
-	private LabelledDisplay viewItems[];
-	private StoreController storeCtrl;
-	
-	private int type;
-	
-	/**This constant attribute holds the cash view title*/
-	public static final String CASH_VIEW_TITLE = "Quantity of Coins Available";
-	/**This constant attribute holds the drink view title*/
-	public static final String DRINK_VIEW_TITLE = "Quantity of Drinks Available";
+public class StoreViewer extends Panel{
 
-	/**
-	 * This constructor creates an instance of StoreViewer object.
-	 * @param ti the type of the store.
-	 * @param sctrl the StoreController.
-	 */
-	public StoreViewer(int ti, StoreController sctrl) {
-		
-		storeCtrl = sctrl;
-		type = ti;
-		
-		String title = null;
-		switch (type) {
-		case Store.CASH:
-			title = CASH_VIEW_TITLE;
-			break;
-		case Store.DRINK:
-			title = DRINK_VIEW_TITLE;
-			break;
-		}
+    private LabelledDisplay viewItems[];
+    private StoreController storeCtrl;
 
-		Panel pl = new Panel(new FlowLayout(FlowLayout.LEFT));
-		pl.add(new Label(title));
+    private int type;
 
-		int sSize = storeCtrl.getStoreSize(type);
-		viewItems = new LabelledDisplay[sSize];
+    /**
+     * This constant attribute holds the cash view title
+     */
+    public static final String CASH_VIEW_TITLE = "Quantity of Coins Available";
+    /**
+     * This constant attribute holds the drink view title
+     */
+    public static final String DRINK_VIEW_TITLE = "Quantity of Drinks Available";
 
-		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-		this.setLayout(new GridLayout(0, 1));
-		this.add(pl);
+    /**
+     * This constructor creates an instance of StoreViewer object.
+     *
+     * @param ti the type of the store.
+     * @param sctrl the StoreController.
+     */
+    public StoreViewer(int ti, StoreController sctrl) {
+        storeCtrl = sctrl;
+        type = ti;
 
-		for (int i = 0; i < sSize; i++) {
-			String name = storeItem[i].getContent().getName();
-			viewItems[i] = new LabelledDisplay(name,
-						LabelledDisplay.DEFAULT,
-						LabelledDisplay.GRID);
-			viewItems[i].addListener(
-                        new StoreViewerListener(type, i, storeCtrl));
-			this.add(viewItems[i]);
-		}
-		      System.out.println("Store Viewer getting called");
-		update();
-	}
+        String title = null;
+        switch (type) {
+            case Store.CASH:
+                title = CASH_VIEW_TITLE;
+                break;
+            case Store.DRINK:
+                title = DRINK_VIEW_TITLE;
+                break;
+        }
 
-	/**
-	 * Update the display fields with the data provided.
-	 */
-	public void update () {
-		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-                   System.out.println("object.getName() >>" +storeItem[0].getContent().getName());
-              		for (int i = 0; i < storeItem.length; i++) {
-			int val = storeItem[i].getQuantity();
-			String sval = String.valueOf(val);
-			viewItems[i].setValue(sval);
-		}
-	}
+        Panel pl = new Panel(new FlowLayout(FlowLayout.LEFT));
+        pl.add(new Label(title));
 
-	/**
-	 * Update the display fields with data provided.
-	 * @param idx the index of the store item.
-	 * @param qty the quantity of the store item.
-	 * @throws VMCSException if fail index is greater or equal to store size.
-	 */
-	public void update(int idx, int qty) throws VMCSException {
-		int sSize = storeCtrl.getStoreSize(type);
-		if (idx >= sSize)
-			throw new VMCSException("StoreViewer.update", "index overflow");
-		viewItems[idx].setValue(qty);
-	}
+        int sSize = storeCtrl.getStoreSize(type);
+        viewItems = new LabelledDisplay[sSize];
 
-	/**
-	 * This method close down the store viewer.
-	 */
-	public void closeDown() {
-	}
+        StoreItem[] storeItem = storeCtrl.getStoreItems(type);
+        this.setLayout(new GridLayout(0, 1));
+        this.add(pl);
 
-	/**
-	 * This method activates the StoreDisplay if the parameter is TRUE&#46; 
-	 * Otherwise, the StoreDisplay is deactivated.
-	 * @param state TRUE to enabled the store viewer, otherwise, disabled the store viewer.
-	 */
-	public void setActive(boolean state) {
-		this.setEnabled(state);
-	}
+        for (int i = 0; i < sSize; i++) {
+            String name = storeItem[i].getContent().getName();
+            viewItems[i] = new LabelledDisplay(name,
+                    LabelledDisplay.DEFAULT,
+                    LabelledDisplay.GRID);
+            viewItems[i].addListener(
+                    new StoreViewerListener(type, i, storeCtrl));
+            this.add(viewItems[i]);
+        }
+        System.out.println("Store Viewer getting called");
+        update();
+    }
+
+    /**
+     * Update the display fields with the data provided.
+     */
+    public void update() {
+        StoreItem[] storeItem = storeCtrl.getStoreItems(type);
+        System.out.println("object.getName() >>" + storeItem[0].getContent().getName());
+        for (int i = 0; i < storeItem.length; i++) {
+            int val = storeItem[i].getQuantity();
+            String sval = String.valueOf(val);
+            viewItems[i].setValue(sval);
+        }
+    }
+
+    /**
+     * Update the display fields with data provided.
+     *
+     * @param idx the index of the store item.
+     * @param qty the quantity of the store item.
+     * @throws VMCSException if fail index is greater or equal to store size.
+     */
+    public void update(int idx, int qty) throws VMCSException {
+        int sSize = storeCtrl.getStoreSize(type);
+        if (idx >= sSize) {
+            throw new VMCSException("StoreViewer.update", "index overflow");
+        }
+        viewItems[idx].setValue(qty);
+    }
+
+    /**
+     * This method close down the store viewer.
+     */
+    public void closeDown() {
+    }
+
+    /**
+     * This method activates the StoreDisplay if the parameter is TRUE&#46;
+     * Otherwise, the StoreDisplay is deactivated.
+     *
+     * @param state TRUE to enabled the store viewer, otherwise, disabled the
+     * store viewer.
+     */
+    public void setActive(boolean state) {
+        this.setEnabled(state);
+    }
 }//End of class StoreViewer

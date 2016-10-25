@@ -38,7 +38,7 @@ public class ChangeGiver {
 	 * Customer Panel.
 	 */
 	public void resetChange(){
-		CustomerPanel custPanel=txCtrl.getCustomerPanel();
+		MyCustomerPanel custPanel=txCtrl.getCustomerPanel();
 		if(custPanel!=null){
 			custPanel.resetChange();
 		}
@@ -63,7 +63,7 @@ public class ChangeGiver {
 	 * Available Display depending on the current change availability.
 	 */
 	public void displayChangeStatus(){
-		CustomerPanel custPanel=txCtrl.getCustomerPanel();
+		MyCustomerPanel custPanel=txCtrl.getCustomerPanel();
 		if(custPanel==null)
 			return;
 		boolean isAnyDenoEmpty=false;

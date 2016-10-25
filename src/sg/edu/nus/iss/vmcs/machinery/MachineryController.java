@@ -7,6 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.machinery;
 
+import java.awt.Dialog;
 import java.util.Observable;
 import java.util.Observer;
 import sg.edu.nus.iss.vmcs.system.*;
@@ -25,7 +26,7 @@ public class MachineryController implements Observer{
 	/**This attribute reference to the StoreController*/
 	public StoreController storeCtrl;
 
-	private MachinerySimulatorPanel ml;
+	private MyMachinerySimulatorPanel ml;
 	private Door door;
 
 	/**
@@ -71,9 +72,10 @@ public class MachineryController implements Observer{
 	 */
 	public void displayMachineryPanel() {
             System.out.println("machinery panelll");
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
 		if (ml == null)
-			ml = new MachinerySimulatorPanel(scp, this);
+                    ml = AbstractGUIFactory.getFactory("Swing").createMachinerySimulator(scp, this);
+//			ml = new MachinerySimulatorPanel(scp, this);
 		ml.display();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
 	}
@@ -93,7 +95,7 @@ public class MachineryController implements Observer{
 			return;
 		}
 		ml.dispose();
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, true);
 	}
 
