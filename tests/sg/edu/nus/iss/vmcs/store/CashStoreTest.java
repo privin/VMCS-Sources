@@ -29,7 +29,9 @@ public class CashStoreTest extends TestCase{
 	
 	@Test
 	public void testSetGetStoreSize() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -44,7 +46,9 @@ public class CashStoreTest extends TestCase{
 
 	@Test
 	public void testGetItems() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -57,7 +61,9 @@ public class CashStoreTest extends TestCase{
 
 	@Test
 	public void testAddItem() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -74,7 +80,9 @@ public class CashStoreTest extends TestCase{
 
 	@Test
 	public void testGetStoreItem() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -94,7 +102,9 @@ public class CashStoreTest extends TestCase{
 
 	@Test
 	public void testFindObject() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -112,7 +122,9 @@ public class CashStoreTest extends TestCase{
 	
 	@Test
 	public void testSetQuantity() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -132,7 +144,9 @@ public class CashStoreTest extends TestCase{
 	
 	@Test
 	public void testFindCashStoreIndex() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -150,7 +164,9 @@ public class CashStoreTest extends TestCase{
 	
 	@Test
 	public void testIsValidWeight() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -172,7 +188,9 @@ public class CashStoreTest extends TestCase{
 	
 	@Test
 	public void testFindCoin() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();

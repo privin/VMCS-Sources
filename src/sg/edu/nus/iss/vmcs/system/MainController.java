@@ -25,7 +25,7 @@ public class MainController {
 	private SimulationController  simulatorCtrl;
 	private MachineryController   machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
-	private TransactionController txCtrl;
+	private TransactionController txCtrl=null;
 	private StoreController       storeCtrl;
         private static MainController mCtrl = null;
 	private static String propertyFile_;
@@ -79,7 +79,7 @@ public class MainController {
 			maintenanceCtrl = new MaintenanceController(mCtrl);
 			machineryCtrl.initialize();
 			storeCtrl.initialize();
-			txCtrl=new TransactionController(mCtrl);
+			txCtrl=TransactionController.getInstance();
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",

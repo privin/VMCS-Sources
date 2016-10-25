@@ -34,7 +34,9 @@ public class CashStoreItemTest extends TestCase{
 	
 	@Test
 	public void testSetGetContent() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -54,7 +56,9 @@ public class CashStoreItemTest extends TestCase{
 
 	@Test
 	public void testSetGetQuantity() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -76,7 +80,9 @@ public class CashStoreItemTest extends TestCase{
 
 	@Test
 	public void testStore() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -96,7 +102,9 @@ public class CashStoreItemTest extends TestCase{
 	
 	@Test
 	public void testDecrement() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();
@@ -119,7 +127,9 @@ public class CashStoreItemTest extends TestCase{
 
 	@Test
 	public void testIncrement() throws Exception{
-		MainController mainCtrl=new MainController(propertyFilename);
+		MainController mainCtrl=MainController.getMainController();
+		MainController.setPropertiesFile(propertyFilename);
+		
 		mainCtrl.initialize();
 		StoreController storeController=mainCtrl.getStoreController();
 		storeController.initialize();

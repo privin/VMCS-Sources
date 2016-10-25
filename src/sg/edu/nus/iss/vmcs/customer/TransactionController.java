@@ -33,13 +33,13 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  */
 public class TransactionController {
 	
-	/*private static TransactionController txrl;
+	private static TransactionController txrl;
 	
-	public TransactionController getInstance(){
+	public static TransactionController getInstance(){
 		if (txrl==null)
-		this.txrl=new TransactionController(MainController mainCtrl);
-		return this.txrl;
-	}*/
+		txrl=new TransactionController(MainController.getMainController());
+		return txrl;
+	}
 	
 	private MainController mainCtrl;
 	private CustomerPanel custPanel;
@@ -60,7 +60,7 @@ public class TransactionController {
 	 * This constructor creates an instance of the TransactionController.
 	 * @param mainCtrl the MainController.
 	 */
-	public TransactionController(MainController mainCtrl) {
+	protected TransactionController(MainController mainCtrl) {
 		this.mainCtrl = mainCtrl;
 		dispenseCtrl=new DispenseController(this);
 		coinReceiver=new CoinReceiver(this);

@@ -13,7 +13,7 @@ import junit.framework.TestSuite;
  */
 public class AllTests {
 	public static TestSuite suite() throws Exception {
-		  TestSuite suite=new TestSuite("Store Tests");
+		  TestSuite suite=new TestSuite("Store Tests");		  
 		  suite.addTestSuite(CashStoreItemTest.class);
 		  suite.addTestSuite(CashStoreTest.class);
 		  suite.addTestSuite(CoinTest.class);
