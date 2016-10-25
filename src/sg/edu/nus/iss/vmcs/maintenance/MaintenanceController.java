@@ -7,11 +7,6 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import java.awt.Frame;
-import java.util.Observable;
-import java.util.Observer;
-
-import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.customer.MyCustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;

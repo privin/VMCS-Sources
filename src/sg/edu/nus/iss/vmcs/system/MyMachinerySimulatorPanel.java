@@ -5,8 +5,6 @@
  */
 package sg.edu.nus.iss.vmcs.system;
 
-import sg.edu.nus.iss.vmcs.machinery.MachineryController;
-import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
 import sg.edu.nus.iss.vmcs.machinery.StoreViewer;
 
 /**
