@@ -99,7 +99,7 @@ public class MainController {
 	 * This method returns the SimulatorControlPanel.
 	 * @return the SimulatorControlPanel.
 	 */
-	public SimulatorControlPanel getSimulatorControlPanel() {
+	public MySimulationControlPanel getSimulatorControlPanel() {
 		return simulatorCtrl.getSimulatorControlPanel();
 	}
 

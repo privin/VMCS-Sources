@@ -9,6 +9,8 @@ package sg.edu.nus.iss.vmcs.util;
 
 import java.awt.event.*;
 import java.awt.*;
+import sg.edu.nus.iss.vmcs.system.GUIPanel;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
 
 /**
  * This object is used to display messages.
@@ -24,8 +26,8 @@ public class MessageDialog extends Dialog implements ActionListener {
 	 * @param fr the parent frame.
 	 * @param msg the message to be displayed.
 	 */
-	public MessageDialog(Dialog fr, String msg) {
-		super(fr, "Message", true);
+	public MessageDialog(GUIPanel fr, String msg) {
+		super((Dialog)fr, "Message", true);
 
 		this.setLayout(new BorderLayout());
 

@@ -12,13 +12,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
+import sg.edu.nus.iss.vmcs.customer.MyCustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.system.AbstractGUIFactory;
 import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
+import sg.edu.nus.iss.vmcs.system.MySimulationControlPanel;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.MessageDialog;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -31,7 +35,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  */
 public class MaintenanceController{
 	private MainController mCtrl;
-	private MaintenancePanel mpanel;
+	private MyMaintenancePanel mpanel;
 	private AccessManager am;
 
 	/**
@@ -55,9 +59,10 @@ public class MaintenanceController{
 	 * This method setup the maintenance panel and display it.
 	 */
 	public void displayMaintenancePanel() {
-		SimulatorControlPanel scp = mCtrl.getSimulatorControlPanel();
+		MySimulationControlPanel scp = mCtrl.getSimulatorControlPanel();
 		if (mpanel == null)
-			mpanel = new MaintenancePanel((Frame) scp, this);
+                   mpanel=  AbstractGUIFactory.getFactory("Swing").createMaintainer(scp, this);
+//			mpanel = new MaintenancePanel((Frame) scp, this);
 		mpanel.display();
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
 		// setActive of password, invalid and valid display.
@@ -234,7 +239,7 @@ public class MaintenanceController{
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
 		
 		//Refresh Customer Panel
-		CustomerPanel custPanel=mCtrl.getTransactionController().getCustomerPanel();
+		MyCustomerPanel custPanel=mCtrl.getTransactionController().getCustomerPanel();
 		if(custPanel==null){
 			mCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
 		}

@@ -42,7 +42,7 @@ public class TransactionController {
 	}
 	
 	private MainController mainCtrl;
-	private CustomerPanel custPanel;
+	private MyCustomerPanel custPanel;
 	private DispenseController dispenseCtrl;
 	private ChangeGiver changeGiver;
 	private CoinReceiver coinReceiver;
@@ -79,8 +79,8 @@ public class TransactionController {
 	 * This method displays and initialize the CustomerPanel.
 	 */
 	public void displayCustomerPanel() {
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-                custPanel = new CustomerPanel((Frame) scp, this);
+		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
+                custPanel = AbstractGUIFactory.getFactory("Swing").createMyCustomer(scp, this);
 		custPanel.display();
 //		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);
@@ -312,7 +312,7 @@ public class TransactionController {
 	 * This method returns the CustomerPanel.
 	 * @return the CustomerPanel.
 	 */
-	public CustomerPanel getCustomerPanel(){
+	public MyCustomerPanel getCustomerPanel(){
 		return custPanel;
 	}
 	

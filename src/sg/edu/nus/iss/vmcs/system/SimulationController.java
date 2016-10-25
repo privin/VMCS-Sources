@@ -20,23 +20,25 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class SimulationController{
-	private SimulatorControlPanel scp = null;
+	private MySimulationControlPanel scp = null;
 	public  MainController        mCtrl = null;
+        private AbstractGUIFactory abstractFactory;
 
 	/**
 	 * This constructor creates an instance of the SimulationController object.
 	 * @param ctrl the MainController.
 	 */
 	public SimulationController(MainController ctrl) {
-		mCtrl = ctrl;
-		scp = new SimulatorControlPanel(this);
+		mCtrl = ctrl; 
+                abstractFactory = AbstractGUIFactory.getFactory("Swing");
+		scp = abstractFactory.createSimulator(this);
 	}
 
 	/**
 	 * This method returns the SimulatorControlPanel.
 	 * @return the SimulatorControlPanel.
 	 */
-	public SimulatorControlPanel getSimulatorControlPanel() {
+	public MySimulationControlPanel getSimulatorControlPanel() {
 		return (scp);
 	}
 

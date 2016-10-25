@@ -133,7 +133,7 @@ public class CoinReceiver {
 	 * receiving coins.
 	 */
 	public void stopReceive(){
-		CustomerPanel custPanel=txCtrl.getCustomerPanel();
+		MyCustomerPanel custPanel=txCtrl.getCustomerPanel();
 		if(custPanel==null){
 			return;
 		}

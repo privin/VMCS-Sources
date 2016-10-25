@@ -7,10 +7,7 @@ package sg.edu.nus.iss.vmcs.system;
 
 /**
  *
- * @author Srishti Miglani
+ * @author Sanskar
  */
-public abstract class AbstractGUI {
-    public abstract void createSimulator();
-    public abstract void createMaintainer();
-    public abstract void createCustomer(); 
+public interface GUIPanel { 
 }
