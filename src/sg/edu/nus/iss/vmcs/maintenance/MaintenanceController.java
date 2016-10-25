@@ -56,7 +56,7 @@ public class MaintenanceController{
 	public void displayMaintenancePanel() {
 		MySimulationControlPanel scp = mCtrl.getSimulatorControlPanel();
 		if (mpanel == null)
-                   mpanel=  AbstractGUIFactory.getFactory("Swing").createMaintainer(scp, this);
+                   mpanel=  AbstractGUIFactory.getFactory("Swing").createMaintainerPanel(scp, this);
 //			mpanel = new MaintenancePanel((Frame) scp, this);
 		mpanel.display();
 		mpanel.setActive(MaintenancePanel.DIALOG, true);

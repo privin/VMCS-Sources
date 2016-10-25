@@ -74,7 +74,7 @@ public class MachineryController implements Observer{
             System.out.println("machinery panelll");
 		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
 		if (ml == null)
-                    ml = AbstractGUIFactory.getFactory("Swing").createMachinerySimulator(scp, this);
+                    ml = AbstractGUIFactory.getFactory("Swing").createMachinerySimulatorPanel(scp, this);
 //			ml = new MachinerySimulatorPanel(scp, this);
 		ml.display();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);

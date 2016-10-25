@@ -76,7 +76,7 @@ public class TransactionController {
 	 */
 	public void displayCustomerPanel() {
 		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
-                custPanel = AbstractGUIFactory.getFactory("Swing").createMyCustomer(scp, this);
+                custPanel = AbstractGUIFactory.getFactory("Swing").createCustomerPanel(scp, this);
 		custPanel.display();
 //		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);

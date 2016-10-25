@@ -19,13 +19,13 @@ public abstract class AbstractGUIFactory {
 
     private static AbstractGUIFactory guiFactory = null;
 
-    public abstract MySimulationControlPanel createSimulator(SimulationController controller);
+    public abstract MySimulationControlPanel createSimulatorPanel(SimulationController controller);
 
-    public abstract MyMaintenancePanel createMaintainer(MySimulationControlPanel fr, MaintenanceController mc);
+    public abstract MyMaintenancePanel createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc);
 
-    public abstract MyMachinerySimulatorPanel createMachinerySimulator(MySimulationControlPanel frm, MachineryController machCtrl);
+    public abstract MyMachinerySimulatorPanel createMachinerySimulatorPanel(MySimulationControlPanel frm, MachineryController machCtrl);
 
-    public abstract MyCustomerPanel createMyCustomer(MySimulationControlPanel fr, TransactionController ctrl);
+    public abstract MyCustomerPanel createCustomerPanel(MySimulationControlPanel fr, TransactionController ctrl);
 
     public static AbstractGUIFactory getFactory(String type) {
         if (guiFactory == null) {

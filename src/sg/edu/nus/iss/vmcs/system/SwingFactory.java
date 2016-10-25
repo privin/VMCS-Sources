@@ -11,29 +11,28 @@ import sg.edu.nus.iss.vmcs.customer.MyCustomerPanel;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
-import sg.edu.nus.iss.vmcs.machinery.StoreViewer;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
-import sg.edu.nus.iss.vmcs.store.StoreController;
+
 
 /**
  *
  * @author Srishti Miglani
  */
 public class SwingFactory extends AbstractGUIFactory {
-    public MySimulationControlPanel createSimulator(SimulationController controller){
+    public MySimulationControlPanel createSimulatorPanel(SimulationController controller){
          SimulatorControlPanel simulatorPanel = new SimulatorControlPanel(controller);
          return simulatorPanel;
      }
-    public MyMaintenancePanel createMaintainer(MySimulationControlPanel fr, MaintenanceController mc){
+    public MyMaintenancePanel createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc){
         MaintenancePanel maintenancePanel = new MaintenancePanel((Frame) fr, mc);
         return maintenancePanel;
     }
-    public MyMachinerySimulatorPanel createMachinerySimulator(MySimulationControlPanel frm, MachineryController machCtrl){
+    public MyMachinerySimulatorPanel createMachinerySimulatorPanel(MySimulationControlPanel frm, MachineryController machCtrl){
         MachinerySimulatorPanel machineryPanel = new MachinerySimulatorPanel(frm, machCtrl);
         return machineryPanel;
     }
-    public MyCustomerPanel createMyCustomer(MySimulationControlPanel fr, TransactionController ctrl) {
+    public MyCustomerPanel createCustomerPanel(MySimulationControlPanel fr, TransactionController ctrl) {
         CustomerPanel customerPanel = new CustomerPanel(fr, ctrl);
         return customerPanel;
     }

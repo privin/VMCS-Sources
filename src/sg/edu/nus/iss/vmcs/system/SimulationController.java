@@ -31,7 +31,7 @@ public class SimulationController{
 	public SimulationController(MainController ctrl) {
 		mCtrl = ctrl; 
                 abstractFactory = AbstractGUIFactory.getFactory("Swing");
-		scp = abstractFactory.createSimulator(this);
+		scp = abstractFactory.createSimulatorPanel(this);
 	}
 
 	/**
