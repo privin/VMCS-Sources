@@ -74,7 +74,7 @@ public class MainController {
                         storeCtrl = new StoreController(cashLoader, drinksLoader);
                         machineryCtrl = new MachineryController(mCtrl);
                         simulatorCtrl = new SimulationController(mCtrl);
-                        System.out.println("Setting machinery conrtrjksrbf");
+//                        System.out.println("Setting machinery conrtrjksrbf");
 
 			maintenanceCtrl = new MaintenanceController(mCtrl);
 			machineryCtrl.initialize();
@@ -152,7 +152,6 @@ public class MainController {
 	 * created for simulating the vending machine&#46;
 	 */
 	public void closeDown() {
-		
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();

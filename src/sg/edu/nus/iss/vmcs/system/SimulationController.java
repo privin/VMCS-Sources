@@ -19,7 +19,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class SimulationController {
+public class SimulationController{
 	private SimulatorControlPanel scp = null;
 	public  MainController        mCtrl = null;
 

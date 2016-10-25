@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.system.MyMachinarySimulatorPanel;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 
 /**
@@ -28,7 +29,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MachinerySimulatorPanel extends Dialog {
+public class MachinerySimulatorPanel extends Dialog implements MyMachinarySimulatorPanel{
 	private static final String TITLE = "Machinery Panel";
 
 	private StoreViewer cashDisplay;
@@ -36,6 +37,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	private Checkbox doorDisplay;
 	private StoreController storeCtrl;
 	private MachineryController machineryCtrl;
+        private MachinerySimulatorPanel macSimulatorPanel;
 
 	/**
 	 * This constructor creates an instance of MachinerySimulatorPanel.
@@ -45,7 +47,12 @@ public class MachinerySimulatorPanel extends Dialog {
 	public MachinerySimulatorPanel(Frame fr, MachineryController machCtrl) {
 		super(fr, TITLE, false);
 
-		machineryCtrl = machCtrl;
+		
+	}
+        
+        public MachinerySimulatorPanel createMachinerySimulatorPanel(SimulatorControlPanel fr, MachineryController machCtrl){
+                macSimulatorPanel = new MachinerySimulatorPanel((Frame)fr, machCtrl);
+                machineryCtrl = machCtrl;
 		storeCtrl = machineryCtrl.getMainController().getStoreController();
 
 		Label lb = new Label(TITLE);
@@ -77,7 +84,8 @@ public class MachinerySimulatorPanel extends Dialog {
 				machineryCtrl.closeMachineryPanel();
 			}
 		});
-	}
+                return macSimulatorPanel;
+        }
 
 	/**
 	 * Display the MachinerySimulatorPanel&#46; This will achieved by displaying

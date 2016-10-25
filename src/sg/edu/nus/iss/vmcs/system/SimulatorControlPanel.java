@@ -26,7 +26,7 @@ import java.awt.event.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class SimulatorControlPanel extends Frame {
+public class SimulatorControlPanel extends Frame implements MySimulationControlPanel {
 	private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
 	private int frameX=0;
 	private int frameY=0;
@@ -34,6 +34,7 @@ public class SimulatorControlPanel extends Frame {
 	private int frameHeight=400;
 	private int screenWidth=screen.width;
 	private int screenHeight=screen.height;
+        private SimulatorControlPanel simulatorPanel = null;
 	
 	/**This constant attribute denotes simulation begins*/
     public static final int SIMUL_BEGIN    = 0;
@@ -70,7 +71,12 @@ public class SimulatorControlPanel extends Frame {
      */
     public SimulatorControlPanel (SimulationController controller) {
         super (title);
-
+           }
+    
+    public SimulatorControlPanel createSimulatorControlPanel(SimulationController controller){
+        if(simulatorPanel == null){
+            simulatorPanel = new SimulatorControlPanel(controller);
+        }
         this.simulationCtrl = controller;
         this.mainCtrl = simulationCtrl.getMainController();
 
@@ -102,6 +108,7 @@ public class SimulatorControlPanel extends Frame {
                 dispose();
             }
 	});
+        return simulatorPanel;
     }
 
     /**

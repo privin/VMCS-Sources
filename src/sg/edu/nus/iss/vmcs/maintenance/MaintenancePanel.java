@@ -80,7 +80,10 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public MaintenancePanel(Frame fr, MaintenanceController mc) {
 		super(fr, TITLE, false);
-
+	}
+        
+        public MaintenancePanel createMaintenancePanel(Frame fr, MaintenanceController mc){
+            
 		mctrl = mc;
 
 		// north part
@@ -155,7 +158,7 @@ public class MaintenancePanel extends Dialog {
         frameX=(screenWidth-frameWidth);
         frameY=0;
         setBounds(frameX,frameY,frameWidth, frameHeight);
-	}
+        }
 
 	/**
 	 * Display the MaintenancePanel&#46; This will be achieved by displaying the frame of

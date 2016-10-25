@@ -70,6 +70,7 @@ public class MachineryController implements Observer{
 	 * This method displays and initializes the MachinerySimulatorPanel.
 	 */
 	public void displayMachineryPanel() {
+            System.out.println("machinery panelll");
 		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
 		if (ml == null)
 			ml = new MachinerySimulatorPanel(scp, this);

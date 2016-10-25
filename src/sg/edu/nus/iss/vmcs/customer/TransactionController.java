@@ -18,7 +18,7 @@ package sg.edu.nus.iss.vmcs.customer;
 import java.awt.Frame;
 import java.util.Observable;
 import java.util.Observer;
-
+import  sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
@@ -31,7 +31,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class TransactionController{
+public class TransactionController {
 	
 	/*private static TransactionController txrl;
 	
@@ -80,7 +80,7 @@ public class TransactionController{
 	 */
 	public void displayCustomerPanel() {
 		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-	    custPanel = new CustomerPanel((Frame) scp, this);
+                custPanel = new CustomerPanel((Frame) scp, this);
 		custPanel.display();
 //		dispenseCtrl.updateDrinkPanel();
 		dispenseCtrl.allowSelection(true);

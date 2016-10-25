@@ -15,6 +15,7 @@ package sg.edu.nus.iss.vmcs.customer;
  *
  */
 
+import sg.edu.nus.iss.vmcs.system.MySimulationControlPanel;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
@@ -30,6 +31,8 @@ import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import sg.edu.nus.iss.vmcs.system.MyCustomerPanel;
+import sg.edu.nus.iss.vmcs.system.*;
 
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.LabelledValue;
@@ -73,7 +76,7 @@ import sg.edu.nus.iss.vmcs.util.WarningDisplay;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class CustomerPanel extends Dialog {
+public class CustomerPanel extends Dialog implements MyCustomerPanel {
 	private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
 	private int frameX=0;
 	private int frameY=0;
@@ -81,6 +84,7 @@ public class CustomerPanel extends Dialog {
 	private int frameHeight=400;
 	private int screenWidth=screen.width;
 	private int screenHeight=screen.height;
+        private static CustomerPanel cust = null; 
 	
 	private static final String TITLE = "Customer Panel";
 	private TransactionController txCtrl;
@@ -108,15 +112,18 @@ public class CustomerPanel extends Dialog {
      */
 	public CustomerPanel(Frame fr, TransactionController ctrl) {
 		super(fr, TITLE, false);
-		
-		txCtrl = ctrl;
-		
+        }		
+        
+        public CustomerPanel createCustomerPanel(MySimulationControlPanel scp, TransactionController ctrl){
+                Frame fr = (Frame)scp;
+                if(cust == null)
+                    cust = new CustomerPanel(fr, ctrl);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
 				txCtrl.getMainController().getSimulatorControlPanel().setButtonState(SimulatorControlPanel.ACT_CUSTOMER,true);
 				dispose();
 				txCtrl.nullifyCustomerPanel();
-			}
+                    	}
 		});
 		
 		coinInputBox=new CoinInputBox(txCtrl);
@@ -169,8 +176,10 @@ public class CustomerPanel extends Dialog {
         frameHeight=this.getHeight();
         frameX=(screenWidth-frameWidth)/2;
         frameY=(screenHeight-frameHeight)/2;
-        setBounds(frameX,frameY,frameWidth, frameHeight);
-	}
+        setBounds(frameX,frameY,frameWidth, frameHeight);  
+                return cust;
+                }
+		
 
 	/**
 	 * Display the Customer Panel&#46; This will be achieved by displaying the frame
