@@ -12,7 +12,7 @@ import sg.edu.nus.iss.vmcs.system.Environment;
 import sg.edu.nus.iss.vmcs.system.MainController;
 
 public class StoreControllerTest extends TestCase{
-	private String propertyFilename=System.getProperty("propertyFilename");
+	private String propertyFilename=System.getProperty("propertyFilename");;	
 	
 	@Before
 	public void setup() throws Exception{
@@ -25,6 +25,7 @@ public class StoreControllerTest extends TestCase{
 	
 	@Test
 	public void testStoreControllerConstructor() throws Exception{
+		System.out.println("inside testStoreControllerConstructor: " + propertyFilename);
 		Environment.initialize(propertyFilename);
 		CashPropertyLoader cashLoader =
 			new CashPropertyLoader(Environment.getCashPropFile());
@@ -144,13 +145,17 @@ public class StoreControllerTest extends TestCase{
 		int storeSize=cashStore.getStoreSize();
 		for(int i=0;i<storeSize;i++){
 			CashStoreItem cashStoreItem=(CashStoreItem)cashStore.getStoreItem(i);
+			int prev = cashStoreItem.getQuantity();
 			Coin coin1=(Coin)cashStoreItem.getContent();
 			//Act storeCoin
 			storeController.storeCoin(coin1);
+			cashStoreItem=(CashStoreItem)cashStore.getStoreItem(i);
+			int after = cashStoreItem.getQuantity();
 			Coin coin2=cashStore.findCoin(coin1.getWeight());
 			//Assert
 			assertNotNull(coin2);
 			assertSame(coin1,coin2);
+			assertEquals(prev + 1, after);
 		}
 	}
 

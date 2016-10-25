@@ -72,12 +72,12 @@ public class StoreController implements Observer{
 	 * update the display on the Machinery Simulator Panel.
 	 * @param c the Coin to be stored.
 	 */
-	public void storeCoin(Coin c) {
+	public void storeCoin(Coin c) {		
 		CashStoreIterator id = ((CashStore)getStore(Store.CASH)).CreateIterator();
                         int idx=id.findCashStoreIndex(c);
 		CashStoreItem item;
-		item = (CashStoreItem) this.getStoreItem(Store.CASH, idx);
-		item.increment();
+		item = (CashStoreItem) this.getStoreItem(Store.CASH, idx);		
+		item.increment();		
 	}
 
 	/**
