@@ -84,6 +84,7 @@ public class MaintenancePanel extends Dialog {
         
         public MaintenancePanel createMaintenancePanel(Frame fr, MaintenanceController mc){
             
+                MaintenancePanel maintenanceP = new MaintenancePanel(fr, mc);
 		mctrl = mc;
 
 		// north part
@@ -158,6 +159,7 @@ public class MaintenancePanel extends Dialog {
         frameX=(screenWidth-frameWidth);
         frameY=0;
         setBounds(frameX,frameY,frameWidth, frameHeight);
+        return maintenanceP;
         }
 
 	/**
