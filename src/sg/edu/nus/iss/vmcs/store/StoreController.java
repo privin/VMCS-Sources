@@ -43,7 +43,7 @@ public class StoreController implements Observer{
 	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
-		stores = new HashMap<>();
+		stores = new HashMap<Integer, Store>();
 		stores.put(Store.CASH, new CashStore(cashLoader));
 		stores.put(Store.DRINK, new DrinksStore(drinksLoader));
 	}
