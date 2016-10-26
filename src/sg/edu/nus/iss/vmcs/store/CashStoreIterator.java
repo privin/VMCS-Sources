@@ -23,7 +23,7 @@ public class CashStoreIterator extends StoreIterator{
 			if(item!=null){
 				Coin current = (Coin) item.getContent();
 				if (current.getWeight() == c.getWeight()){
-					return super.getCurrent();
+					return super.getCurrent() - 1;
 				}
 			}
 		}

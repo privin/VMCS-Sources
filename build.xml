@@ -9,12 +9,12 @@
     <mkdir dir="docs"/>
   </target>
   <target name="compile">
-    <javac srcdir="src" destdir="classes" deprecation="on">
+    <javac srcdir="src" destdir="classes" deprecation="on" debug="on">
       <classpath>
         <pathelement location="classes"/>
       </classpath>
     </javac>
-    <javac srcdir="tests" destdir="classes" deprecation="on">
+    <javac srcdir="tests" destdir="classes" deprecation="on" debug="on">
       <classpath>
         <pathelement location="classes"/>
       	<pathelement location="./jars/junit.jar"/>

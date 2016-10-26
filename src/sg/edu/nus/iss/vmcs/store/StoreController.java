@@ -43,7 +43,7 @@ public class StoreController implements Observer{
 	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
-		stores = new HashMap<>();
+		stores = new HashMap<Integer, Store>();
 		stores.put(Store.CASH, new CashStore(cashLoader));
 		stores.put(Store.DRINK, new DrinksStore(drinksLoader));
 	}
@@ -72,7 +72,7 @@ public class StoreController implements Observer{
 	 * update the display on the Machinery Simulator Panel.
 	 * @param c the Coin to be stored.
 	 */
-	public void storeCoin(Coin c) {
+	public void storeCoin(Coin c) {		
 		CashStoreIterator id = ((CashStore)getStore(Store.CASH)).CreateIterator();
                         int idx=id.findCashStoreIndex(c);
 		CashStoreItem item;
