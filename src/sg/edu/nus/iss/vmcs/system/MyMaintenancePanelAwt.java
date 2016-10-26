@@ -13,7 +13,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  *
  * @author Srishti Miglani
  */
-public interface MyMaintenancePanel extends GUIPanel{
+public interface MyMaintenancePanelAwt extends GUIPanel{
 //    public void createMaintenancePanel();
     public void display() ;
     public void closeDown();

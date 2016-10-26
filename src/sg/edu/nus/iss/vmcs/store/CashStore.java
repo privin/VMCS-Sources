@@ -101,27 +101,29 @@ public class CashStore extends Store {
 			CashStoreItem item = (CashStoreItem) propertyLoader.getItem(i);
 			addItem(i, item);
 			Coin coin=(Coin)item.getContent();
+                        System.out.println("coin value for loop"+coin.getValue());
 			switch(coin.getValue()){
 
 			case(CashStore.DEMONINATION_100):
 				c1=new Cents100Dispenser(item);
+                                System.out.println("created 100 object"+c1);
 			break;
 
 			case(CashStore.DEMONINATION_50):
-
-				c2=new Cents50Dispenser(item);
+                                c2=new Cents50Dispenser(item);
+                                System.out.println("created 50 object"+c2);
 			break;
 			case(CashStore.DEMONINATION_20):
-
-				c3=new Cents20Dispenser(item);
+                                c3=new Cents20Dispenser(item);
+                                System.out.println("created 20 object"+c3);
 			break;
 			case(CashStore.DEMONINATION_10):
-
-				c4=new Cents10Dispenser(item);
+                                c4=new Cents10Dispenser(item);
+                                System.out.println("created 10 object"+c4);
 			break;
 			case(CashStore.DEMONINATION_5):
-
-				c5=new Cents5Dispenser(item);
+                                 c5=new Cents5Dispenser(item);
+                                 System.out.println("created 5 object"+c5);
 			break;
 
 			default:

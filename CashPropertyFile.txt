@@ -1,5 +1,5 @@
 #
-#Tue Oct 25 18:03:06 SGT 2016
+#Wed Oct 26 13:18:58 SGT 2016
 Name5=5C
 Name4=50C
 Name3=$1
@@ -11,11 +11,11 @@ NumOfItems=5
 Value3=100
 Value2=10
 Value1=20
-Quantity5=0
-Quantity4=6
-Quantity3=20
-Quantity2=0
-Quantity1=0
+Quantity5=10
+Quantity4=14
+Quantity3=23
+Quantity2=4
+Quantity1=5
 Weight5=7.1
 Weight4=35.0
 Weight3=42.2

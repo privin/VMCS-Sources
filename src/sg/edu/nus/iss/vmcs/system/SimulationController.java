@@ -79,7 +79,7 @@ public class SimulationController{
 	 */
 	public void start() {
 		scp.setSimulationActive(true);
-		scp.setActive(SimulatorControlPanel.SIMUL_BEGIN, false);
+		scp.setActive(SimulatorControlPanelAwt.SIMUL_BEGIN, false);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class SimulationController{
 		MachineryController machCtrl;
 
 		machCtrl = mCtrl.getMachineryController();
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+		scp.setActive(SimulatorControlPanelAwt.ACT_MACHINERY, false);
 		try {
 			// activate when not login
 			// always diaply the door locked; isOpen false
@@ -136,7 +136,7 @@ public class SimulationController{
 	public void setupMaintainer() {
 		MaintenanceController mctrl;
 		mctrl = mCtrl.getMaintenanceController();
-		scp.setActive(SimulatorControlPanel.ACT_MAINTAINER, false);
+		scp.setActive(SimulatorControlPanelAwt.ACT_MAINTAINER, false);
 		mctrl.displayMaintenancePanel();
 	}
 	
@@ -155,7 +155,7 @@ public class SimulationController{
 	public void setupCustomer() {
 		TransactionController cctrl;
 		cctrl = mCtrl.getTransactionController();
-		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		scp.setActive(SimulatorControlPanelAwt.ACT_CUSTOMER, false);
 		cctrl.displayCustomerPanel();
 	}
 

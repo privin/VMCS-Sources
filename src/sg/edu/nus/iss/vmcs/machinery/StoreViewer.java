@@ -8,6 +8,8 @@
 package sg.edu.nus.iss.vmcs.machinery;
 
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
@@ -83,7 +85,6 @@ public class StoreViewer extends Panel{
      */
     public void update() {
         StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-        System.out.println("object.getName() >>" + storeItem[0].getContent().getName());
         for (int i = 0; i < storeItem.length; i++) {
             int val = storeItem[i].getQuantity();
             String sval = String.valueOf(val);
@@ -122,4 +123,6 @@ public class StoreViewer extends Panel{
     public void setActive(boolean state) {
         this.setEnabled(state);
     }
+
+   
 }//End of class StoreViewer

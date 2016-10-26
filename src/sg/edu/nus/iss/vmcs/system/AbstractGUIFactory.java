@@ -21,17 +21,15 @@ public abstract class AbstractGUIFactory {
 
     public abstract MySimulationControlPanel createSimulatorPanel(SimulationController controller);
 
-    public abstract MyMaintenancePanel createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc);
+    public abstract MyMaintenancePanelAwt createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc);
 
     public abstract MyMachinerySimulatorPanel createMachinerySimulatorPanel(MySimulationControlPanel frm, MachineryController machCtrl);
 
     public abstract MyCustomerPanel createCustomerPanel(MySimulationControlPanel fr, TransactionController ctrl);
 
     public static AbstractGUIFactory getFactory(String type) {
-        if (guiFactory == null) {
-            if (type.equals("Swing")) {
-                guiFactory = new SwingFactory();
-            }
+            if (type.equals("Swing")){
+            guiFactory = SwingFactory.getInstance();
             return guiFactory;
         } else {
             return guiFactory;

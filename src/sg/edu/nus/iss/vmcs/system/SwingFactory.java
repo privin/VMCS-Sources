@@ -6,11 +6,11 @@
 package sg.edu.nus.iss.vmcs.system;
 
 import java.awt.Frame;
-import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
+import sg.edu.nus.iss.vmcs.customer.CustomerPanelAwt;
 import sg.edu.nus.iss.vmcs.customer.MyCustomerPanel;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
-import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
+import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanelAwt;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
@@ -20,23 +20,37 @@ import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
  * @author Srishti Miglani
  */
 public class SwingFactory extends AbstractGUIFactory {
+    
+    private static SwingFactory swingFactory = null; 
+    
+    protected SwingFactory(){
+        
+    }
+    
     public MySimulationControlPanel createSimulatorPanel(SimulationController controller){
-         SimulatorControlPanel simulatorPanel = new SimulatorControlPanel(controller);
+         SimulatorControlPanelAwt simulatorPanel = new SimulatorControlPanelAwt(controller);
          return simulatorPanel;
      }
-    public MyMaintenancePanel createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc){
+    public MyMaintenancePanelAwt createMaintainerPanel(MySimulationControlPanel fr, MaintenanceController mc){
         MaintenancePanel maintenancePanel = new MaintenancePanel((Frame) fr, mc);
         return maintenancePanel;
     }
     public MyMachinerySimulatorPanel createMachinerySimulatorPanel(MySimulationControlPanel frm, MachineryController machCtrl){
-        MachinerySimulatorPanel machineryPanel = new MachinerySimulatorPanel(frm, machCtrl);
+        MachinerySimulatorPanelAwt machineryPanel = new MachinerySimulatorPanelAwt(frm, machCtrl);
         return machineryPanel;
     }
     public MyCustomerPanel createCustomerPanel(MySimulationControlPanel fr, TransactionController ctrl) {
-        CustomerPanel customerPanel = new CustomerPanel(fr, ctrl);
+        CustomerPanelAwt customerPanel = new CustomerPanelAwt(fr, ctrl);
         return customerPanel;
     }
     
+    public static SwingFactory getInstance(){
+        if(swingFactory == null){
+            swingFactory = new SwingFactory();
+            return swingFactory;
+        }
+        return swingFactory;
+    }
     
     
 }

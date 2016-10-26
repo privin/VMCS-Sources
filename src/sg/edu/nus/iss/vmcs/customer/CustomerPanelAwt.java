@@ -32,7 +32,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import sg.edu.nus.iss.vmcs.system.*;
 
-import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.system.SimulatorControlPanelAwt;
 import sg.edu.nus.iss.vmcs.util.LabelledValue;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
 
@@ -74,7 +74,7 @@ import sg.edu.nus.iss.vmcs.util.WarningDisplay;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class CustomerPanel extends Dialog implements MyCustomerPanel {
+public class CustomerPanelAwt extends Dialog implements MyCustomerPanel {
 
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private int frameX = 0;
@@ -108,13 +108,13 @@ public class CustomerPanel extends Dialog implements MyCustomerPanel {
      * @param fr the parent frame
      * @param ctrl the Transaction Controller
      */
-    public CustomerPanel(MySimulationControlPanel fr, TransactionController ctrl) {
+    public CustomerPanelAwt(MySimulationControlPanel fr, TransactionController ctrl) {
         super((Frame)fr, TITLE, false);
         txCtrl = ctrl;
         
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
-                txCtrl.getMainController().getSimulatorControlPanel().setButtonState(SimulatorControlPanel.ACT_CUSTOMER, true);
+                txCtrl.getMainController().getSimulatorControlPanel().setButtonState(SimulatorControlPanelAwt.ACT_CUSTOMER, true);
                 dispose();
                 txCtrl.nullifyCustomerPanel();
             }

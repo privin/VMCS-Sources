@@ -10,7 +10,7 @@ package sg.edu.nus.iss.vmcs.util;
 import java.awt.event.*;
 import java.awt.*;
 import sg.edu.nus.iss.vmcs.system.GUIPanel;
-import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanelAwt;
 
 /**
  * This object is used to display messages.

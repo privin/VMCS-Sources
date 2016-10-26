@@ -44,8 +44,8 @@ public class StoreItem extends Observable{
 	public StoreItem(StoreObject content, int quantity) {
 		this.content = content;
 		this.quantity = quantity;
-                this.addObserver(MainController.getMainController().getMachineryController());
                 this.addObserver(MainController.getMainController().getStoreController());
+                this.addObserver(MainController.getMainController().getMachineryController());
 	}
 
 	/**

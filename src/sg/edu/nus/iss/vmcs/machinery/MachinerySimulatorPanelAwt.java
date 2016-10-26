@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.system.SimulatorControlPanelAwt;
 import sg.edu.nus.iss.vmcs.system.MyMachinerySimulatorPanel;
 import sg.edu.nus.iss.vmcs.system.MySimulationControlPanel;
 
@@ -30,7 +30,7 @@ import sg.edu.nus.iss.vmcs.system.MySimulationControlPanel;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MachinerySimulatorPanel extends Dialog implements MyMachinerySimulatorPanel{
+public class MachinerySimulatorPanelAwt extends Dialog implements MyMachinerySimulatorPanel{
 	private static final String TITLE = "Machinery Panel";
 
 	private StoreViewer cashDisplay;
@@ -38,14 +38,14 @@ public class MachinerySimulatorPanel extends Dialog implements MyMachinerySimula
 	private Checkbox doorDisplay;
 	private StoreController storeCtrl;
 	private MachineryController machineryCtrl;
-        private MachinerySimulatorPanel macSimulatorPanel;
+        private MachinerySimulatorPanelAwt macSimulatorPanel;
 
 	/**
 	 * This constructor creates an instance of MachinerySimulatorPanel.
 	 * @param fr the parent frame.
 	 * @param machCtrl the MachineryController.
 	 */
-	public MachinerySimulatorPanel(MySimulationControlPanel fr, MachineryController machCtrl) {
+	public MachinerySimulatorPanelAwt(MySimulationControlPanel fr, MachineryController machCtrl) {
 		super((Frame)fr, TITLE, false);
                 machineryCtrl = machCtrl;	
 

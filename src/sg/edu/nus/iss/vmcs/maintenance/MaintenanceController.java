@@ -16,11 +16,11 @@ import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.AbstractGUIFactory;
 import sg.edu.nus.iss.vmcs.system.MainController;
-import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
 import sg.edu.nus.iss.vmcs.system.MySimulationControlPanel;
-import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.system.SimulatorControlPanelAwt;
 import sg.edu.nus.iss.vmcs.util.MessageDialog;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanelAwt;
 
 /**
  * This control object handles the system maintenance use case.
@@ -30,7 +30,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  */
 public class MaintenanceController{
 	private MainController mCtrl;
-	private MyMaintenancePanel mpanel;
+	private MyMaintenancePanelAwt mpanel;
 	private AccessManager am;
 
 	/**
@@ -236,7 +236,7 @@ public class MaintenanceController{
 		//Refresh Customer Panel
 		MyCustomerPanel custPanel=mCtrl.getTransactionController().getCustomerPanel();
 		if(custPanel==null){
-			mCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
+			mCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanelAwt.ACT_CUSTOMER, true);
 		}
 		else{
 			mCtrl.getTransactionController().refreshCustomerPanel();

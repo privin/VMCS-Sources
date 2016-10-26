@@ -77,7 +77,7 @@ public class MachineryController implements Observer{
                     ml = AbstractGUIFactory.getFactory("Swing").createMachinerySimulatorPanel(scp, this);
 //			ml = new MachinerySimulatorPanel(scp, this);
 		ml.display();
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+		scp.setActive(SimulatorControlPanelAwt.ACT_MACHINERY, false);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class MachineryController implements Observer{
 		}
 		ml.dispose();
 		MySimulationControlPanel scp = mainCtrl.getSimulatorControlPanel();
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, true);
+		scp.setActive(SimulatorControlPanelAwt.ACT_MACHINERY, true);
 	}
 
 	/* ************************************************************
@@ -119,7 +119,7 @@ public class MachineryController implements Observer{
 		displayDoorState();
 		
 		//Disable Activate Customer Panel Button
-		mainCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		mainCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanelAwt.ACT_CUSTOMER, false);
 	}
 
 	/* ************************************************************

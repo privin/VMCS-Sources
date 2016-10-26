@@ -76,7 +76,7 @@ public class StoreController implements Observer{
 		CashStoreIterator id = ((CashStore)getStore(Store.CASH)).CreateIterator();
                         int idx=id.findCashStoreIndex(c);
 		CashStoreItem item;
-		item = (CashStoreItem) this.getStoreItem(Store.CASH, idx);
+		item = (CashStoreItem) this.getStoreItem(Store.CASH, --idx);
 		item.increment();
 	}
 

@@ -20,10 +20,10 @@ import java.awt.Panel;
 import java.awt.Toolkit;
 
 import sg.edu.nus.iss.vmcs.store.Store;
-import sg.edu.nus.iss.vmcs.system.MyMaintenancePanel;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
+import sg.edu.nus.iss.vmcs.system.MyMaintenancePanelAwt;
 
 /**
  * This panel simulates the vending machines maintainer control panel&#46;
@@ -46,7 +46,7 @@ import sg.edu.nus.iss.vmcs.util.WarningDisplay;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class MaintenancePanel extends Dialog implements MyMaintenancePanel{
+public class MaintenancePanel extends Dialog implements MyMaintenancePanelAwt{
 	private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
 	private int frameX=0;
 	private int frameY=0;
